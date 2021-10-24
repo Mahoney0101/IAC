@@ -1,0 +1,11 @@
+---
+- name: install docker
+  yum:
+    name='docker'
+    state=latest
+
+- name: service docker
+  service:
+    name=docker
+    state=started
+    enabled=yes

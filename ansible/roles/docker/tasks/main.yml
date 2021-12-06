@@ -1,6 +1,6 @@
 ---
 - name: install docker
-  yum:
+  apt:
     name='docker'
     state=latest
 

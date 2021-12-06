@@ -1,22 +1,23 @@
----
-- name: configure / Update yum packages
-  yum:
-    name: '*'
-    state: latest
-    update_cache: yes
+ - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: true
+      cache_valid_time: 3600
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
 
-- name: Ensure a list of yum packages are installed
-  yum:
-    name: "{{ packages }}"
-    state: latest
-    update_cache: yes
-  vars:
-    packages:
-    - python-pip
-    - yum-utils
-    - device-mapper-persistent-data
-    - lvm2
-    - amazon-linux-extras
+# - name: Ensure a list of yum packages are installed
+#   yum:
+#     name: "{{ packages }}"
+#     state: latest
+#     update_cache: yes
+#   vars:
+#     packages:
+#     - python-pip
+#     - yum-utils
+#     - device-mapper-persistent-data
+#     - lvm2
+#     - amazon-linux-extras
 
-- name: Add extras repository
-  shell: yum-config-manager --enable extras
+# - name: Add extras repository
+#   shell: yum-config-manager --enable extras

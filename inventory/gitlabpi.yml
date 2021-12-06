@@ -1,6 +1,6 @@
 ---
-- name: Inventory test
-  hosts: all
+- name: Inventory gitlabpi
+  hosts: 192.168.1.34
   gather_facts: False
   become: true
   roles:

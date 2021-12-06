@@ -1,8 +1,0 @@
----
-- name: Inventory gitlabpi
-  hosts: 192.168.1.34
-  gather_facts: False
-  become: true
-  roles:
-   - { role: common }
-   - { role: docker }

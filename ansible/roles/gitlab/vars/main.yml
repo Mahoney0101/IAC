@@ -1,0 +1,12 @@
+---
+gitlab_directories:
+- /gitlab/data
+- /gitlab/logs
+- /gitlab/config/ssl
+
+gitlab_image_tag: ulm0/gitlab
+
+gitlab_firewall_ports:
+- 443
+- 80
+- 2222

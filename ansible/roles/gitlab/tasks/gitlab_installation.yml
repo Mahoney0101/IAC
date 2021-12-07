@@ -1,0 +1,25 @@
+---
+- name: Install Docker
+  pip:
+    name: docker
+
+- name: Pull gitlab image
+  docker_image: 
+    name: "{{ gitlab_image_tag }}"
+    source: pull
+
+- name: Create gitlab container on Pi
+  docker_container:
+    name: gitlab
+    image: "{{ gitlab_image_tag }}"
+    hostname: gitlab.mahoney0101.com
+    ports:
+      - "443:443"
+      - "80:80"
+      - "2222:22"
+    restart_policy: always
+    volumes:
+      - /gitlab/config:/etc/gitlab
+      - /gitlab/logs:/var/log/gitlab
+      - /gitlab/data:/var/opt/gitlab
+    recreate: yes

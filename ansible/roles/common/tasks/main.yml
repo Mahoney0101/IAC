@@ -5,3 +5,6 @@
 - name: Update all packages to the latest version
   apt:
     upgrade: dist
+- name: Install ufw
+  apt:
+    name: ufw

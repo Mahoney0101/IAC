@@ -1,0 +1,6 @@
+- name: Create Gilab Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 02777
+  with_items: "{{ gitlab_directories }}"

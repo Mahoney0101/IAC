@@ -1,0 +1,11 @@
+---
+- name: Configure ufw ports
+  ufw:
+    rule: allow
+    direction: in
+    src: 192.168.1.30
+    dest: any
+    proto: tcp
+    to_port: "{{ item }}"
+  with_items:
+    - "{{ gitlab_firewall_ports }}"

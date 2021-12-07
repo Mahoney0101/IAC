@@ -1,0 +1,4 @@
+---
+- include_tasks: configure_firewall_ports.yml
+- include_tasks: create_gitlab_directories.yml
+- include_tasks: gitlab_installation.yml

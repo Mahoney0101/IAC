@@ -1,4 +1,9 @@
 ---
+- name: gitlab.rb
+  template:
+    src: gitlab.rb
+    dest: /gitlab/config/gitlab.rb
+
 - name: Install Docker
   pip:
     name: docker

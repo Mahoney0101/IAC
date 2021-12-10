@@ -1,10 +1,30 @@
 ---
-- name: gitlab.rb
+- name: Copy gitlab.rb
   template:
-    src: gitlab.rb
+    src: gitlab.rb.j2
     dest: /gitlab/config/gitlab.rb
 
-- name: Install Docker
+- name: Copy SSL cert
+  copy:
+    src: "/etc/ansible/roles/gitlab/files/cert.pem"
+    dest: "/gitlab/config/ssl/cert.pem"
+    mode: '0755'
+
+- name: Copy SSL key
+  copy:
+    src: "/etc/ansible/roles/gitlab/files/privkey.pem"
+    dest: "/gitlab/config/ssl/privkey.pem"
+    mode: '0755'
+
+- name: Increase swap size
+  become: true
+  shell: echo 'CONF_SWAPSIZE=4096\nCONF_MAXSWAP=4096' > /etc/dphys-swapfile 
+
+- name: Restart swapfile service
+  become: true
+  shell: /etc/init.d/dphys-swapfile restart
+
+- name: Ensure Docker Installed
   pip:
     name: docker
 

@@ -24,10 +24,6 @@
   become: true
   shell: /etc/init.d/dphys-swapfile restart
 
-- name: Ensure Docker Installed
-  pip:
-    name: docker
-
 - name: Pull gitlab image
   docker_image: 
     name: "{{ gitlab_image_tag }}"

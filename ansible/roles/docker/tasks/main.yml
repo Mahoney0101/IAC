@@ -13,20 +13,20 @@
     name: python-configparser
     state: absent
 
-- name: get docker convenience script
+- name: Get docker convenience script
   shell: curl -fsSL https://get.docker.com -o get-docker.sh
   args:
     creates: /home/pi/get-docker.sh
 
-- name: install docker
+- name: Install docker
   shell: sh /home/pi/get-docker.sh
   args:
     creates: /usr/bin/docker
 
-- name: make pi user execute docker commands
+- name: Make pi user execute docker commands
   shell: usermod -aG docker pi
 
-- name: install docker-compose
+- name: Install docker-compose
   shell: pip3 -v install docker-compose
   args:
     creates: /usr/local/bin/docker-compose
